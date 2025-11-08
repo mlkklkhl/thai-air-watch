@@ -6,8 +6,8 @@ const Index = () => {
   // Mock data - replace with actual API calls
   const currentData = {
     location: "Hat Yai, Songkhla",
-    pm25: 45.2,
-    pm10: 68.5,
+    pm25: 165.4,
+    pm10: 185.5,
     temperature: 32,
     humidity: 65,
     windSpeed: 2.5,
@@ -16,9 +16,9 @@ const Index = () => {
   };
 
   const forecasts = [
-    { title: "Tomorrow", date: "Nov 9, 2025", pm25: 38.5, trend: "down" as const },
-    { title: "In 2 Days", date: "Nov 10, 2025", pm25: 52.1, trend: "up" as const },
-    { title: "Next Week", date: "Nov 15, 2025", pm25: 35.8, trend: "down" as const },
+    { title: "Tomorrow", date: "Nov 9, 2025", pm25: 8.5, trend: "down" as const },
+    { title: "In 2 Days", date: "Nov 10, 2025", pm25: 28.1, trend: "up" as const },
+    { title: "Next Week", date: "Nov 15, 2025", pm25: 260.8, trend: "up" as const },
   ];
 
   return (

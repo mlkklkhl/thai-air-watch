@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { AQIBadge, getAQILevel } from "./AQIBadge";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import mermaidBg from "@/assets/samila-mermaid.png";
 
 interface ForecastCardProps {
   title: string;
@@ -10,13 +11,21 @@ interface ForecastCardProps {
 }
 
 export const ForecastCard = ({ title, date, pm25, trend = "stable" }: ForecastCardProps) => {
-  const { level } = getAQILevel(pm25);
+  const { level, color } = getAQILevel(pm25);
 
   const TrendIcon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
   const trendColor = trend === "up" ? "text-aqi-unhealthy" : trend === "down" ? "text-aqi-good" : "text-muted-foreground";
 
   return (
-    <Card className="p-6 bg-card hover:shadow-md transition-shadow duration-200 border border-border">
+    <Card 
+      className="p-6 hover:shadow-md transition-shadow duration-200 border border-border relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(${color.replace('bg-', 'hsl(var(--')}/ 0.3), ${color.replace('bg-', 'hsl(var(--')}/ 0.3)), url(${mermaidBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'multiply'
+      }}
+    >
       <div className="space-y-4">
         <div>
           <h3 className="font-semibold text-foreground">{title}</h3>

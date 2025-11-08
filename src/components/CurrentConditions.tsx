@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { AQIBadge, getAQILevel } from "./AQIBadge";
 import { Thermometer, Droplets, Wind, CloudRain, Navigation } from "lucide-react";
+import mermaidBg from "@/assets/samila-mermaid.png";
 
 interface CurrentConditionsProps {
   pm25: number;
@@ -26,7 +27,15 @@ export const CurrentConditions = ({
   const { level, color } = getAQILevel(pm25);
 
   return (
-    <Card className="p-6 md:p-8 bg-gradient-to-br from-card to-card/80 shadow-lg border-0">
+    <Card 
+      className="p-6 md:p-8 shadow-lg border border-border relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(${color.replace('bg-', 'hsl(var(--')}/ 0.3), ${color.replace('bg-', 'hsl(var(--')}/ 0.3)), url(${mermaidBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'multiply'
+      }}
+    >
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
