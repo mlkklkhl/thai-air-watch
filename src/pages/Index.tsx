@@ -5,7 +5,7 @@ import { Cloud } from "lucide-react";
 const Index = () => {
   // Mock data - replace with actual API calls
   const currentData = {
-    location: "Bangkok, Thailand",
+    location: "Hat Yai, Songkhla",
     pm25: 45.2,
     pm10: 68.5,
     temperature: 32,
@@ -29,7 +29,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <Cloud className="w-8 h-8 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Thailand Air Quality</h1>
+              <h1 className="text-2xl font-bold text-foreground">Hat Yai Air Quality</h1>
               <p className="text-sm text-muted-foreground">PM2.5 Forecasting System</p>
             </div>
           </div>
