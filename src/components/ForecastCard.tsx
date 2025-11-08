@@ -10,6 +10,17 @@ interface ForecastCardProps {
   trend?: "up" | "down" | "stable";
 }
 
+const getHueRotation = (colorClass: string): number => {
+  // Map AQI colors to hue rotations to tint the green mermaid image
+  if (colorClass.includes('good')) return 0; // Keep green
+  if (colorClass.includes('moderate')) return 60; // Yellow
+  if (colorClass.includes('unhealthySensitive')) return 30; // Orange
+  if (colorClass.includes('unhealthy') && !colorClass.includes('very')) return 0; // Red
+  if (colorClass.includes('veryUnhealthy')) return 300; // Purple
+  if (colorClass.includes('hazardous')) return 330; // Maroon
+  return 0;
+};
+
 export const ForecastCard = ({ title, date, pm25, trend = "stable" }: ForecastCardProps) => {
   const { level, color } = getAQILevel(pm25);
 
@@ -19,13 +30,18 @@ export const ForecastCard = ({ title, date, pm25, trend = "stable" }: ForecastCa
   return (
     <Card 
       className="p-6 hover:shadow-md transition-shadow duration-200 border border-border relative overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(${color.replace('bg-', 'hsl(var(--')}/ 0.3), ${color.replace('bg-', 'hsl(var(--')}/ 0.3)), url(${mermaidBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundBlendMode: 'multiply'
-      }}
     >
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${mermaidBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.3,
+          filter: `hue-rotate(${getHueRotation(color)}deg) saturate(1.5)`
+        }}
+      />
+      <div className="relative z-10">
       <div className="space-y-4">
         <div>
           <h3 className="font-semibold text-foreground">{title}</h3>
@@ -41,6 +57,7 @@ export const ForecastCard = ({ title, date, pm25, trend = "stable" }: ForecastCa
         </div>
 
         <AQIBadge value={pm25} />
+      </div>
       </div>
     </Card>
   );
