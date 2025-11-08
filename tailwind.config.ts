@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        aqi: {
+          good: "hsl(var(--aqi-good))",
+          moderate: "hsl(var(--aqi-moderate))",
+          unhealthySensitive: "hsl(var(--aqi-unhealthy-sensitive))",
+          unhealthy: "hsl(var(--aqi-unhealthy))",
+          veryUnhealthy: "hsl(var(--aqi-very-unhealthy))",
+          hazardous: "hsl(var(--aqi-hazardous))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
