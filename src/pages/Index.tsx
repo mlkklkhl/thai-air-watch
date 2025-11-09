@@ -1,5 +1,8 @@
 import { CurrentConditions } from "@/components/CurrentConditions";
 import { ForecastCard } from "@/components/ForecastCard";
+import { TrendChart } from "@/components/TrendChart";
+import { WeeklyForecast } from "@/components/WeeklyForecast";
+import { AdaptationGuide } from "@/components/AdaptationGuide";
 import { Cloud } from "lucide-react";
 
 const Index = () => {
@@ -19,6 +22,28 @@ const Index = () => {
     { title: "Tomorrow", date: "Nov 9, 2025", pm25: 8.5, trend: "down" as const },
     { title: "In 2 Days", date: "Nov 10, 2025", pm25: 28.1, trend: "up" as const },
     { title: "Next Week", date: "Nov 15, 2025", pm25: 260.8, trend: "up" as const },
+  ];
+
+  // Generate historical data for past 30 days
+  const historicalData = Array.from({ length: 30 }, (_, i) => {
+    const date = new Date();
+    date.setDate(date.getDate() - (29 - i));
+    const randomPM25 = Math.random() * 100 + 20; // Random PM2.5 between 20-120
+    return {
+      date: `${date.getMonth() + 1}/${date.getDate()}`,
+      pm25: Number(randomPM25.toFixed(1)),
+    };
+  });
+
+  // Generate weekly forecast data
+  const weeklyData = [
+    { day: "Mon", pm25: 8.5 },
+    { day: "Tue", pm25: 12.3 },
+    { day: "Wed", pm25: 28.1 },
+    { day: "Thu", pm25: 45.2 },
+    { day: "Fri", pm25: 65.8 },
+    { day: "Sat", pm25: 52.4 },
+    { day: "Sun", pm25: 38.6 },
   ];
 
   return (
@@ -43,14 +68,29 @@ const Index = () => {
           <CurrentConditions {...currentData} />
         </section>
 
-        {/* Forecasts */}
+        {/* Historical Trend */}
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Forecast</h2>
+          <TrendChart data={historicalData} />
+        </section>
+
+        {/* Weekly Forecast */}
+        <section>
+          <WeeklyForecast data={weeklyData} />
+        </section>
+
+        {/* Quick Forecasts */}
+        <section>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Quick Forecast</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {forecasts.map((forecast, index) => (
               <ForecastCard key={index} {...forecast} />
             ))}
           </div>
+        </section>
+
+        {/* Adaptation Guide */}
+        <section>
+          <AdaptationGuide currentPM25={currentData.pm25} />
         </section>
 
         {/* Information */}
