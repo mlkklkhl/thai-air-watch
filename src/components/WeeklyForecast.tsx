@@ -29,7 +29,6 @@ export const WeeklyForecast = ({ data }: WeeklyForecastProps) => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url(${samilaMermaid})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.3,

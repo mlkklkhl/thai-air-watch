@@ -6,11 +6,11 @@ interface AQIBadgeProps {
 }
 
 export const getAQILevel = (pm25: number) => {
-  if (pm25 <= 12) return { level: "Good", color: "bg-aqi-good", textColor: "text-white" };
+  if (pm25 <= 9.0) return { level: "Good", color: "bg-aqi-good", textColor: "text-white" };
   if (pm25 <= 35.4) return { level: "Moderate", color: "bg-aqi-moderate", textColor: "text-foreground" };
   if (pm25 <= 55.4) return { level: "Unhealthy for Sensitive Groups", color: "bg-aqi-unhealthySensitive", textColor: "text-white" };
-  if (pm25 <= 150.4) return { level: "Unhealthy", color: "bg-aqi-unhealthy", textColor: "text-white" };
-  if (pm25 <= 250.4) return { level: "Very Unhealthy", color: "bg-aqi-veryUnhealthy", textColor: "text-white" };
+  if (pm25 <= 125.4) return { level: "Unhealthy", color: "bg-aqi-unhealthy", textColor: "text-white" };
+  if (pm25 <= 225.4) return { level: "Very Unhealthy", color: "bg-aqi-veryUnhealthy", textColor: "text-white" };
   return { level: "Hazardous", color: "bg-aqi-hazardous", textColor: "text-white" };
 };
 

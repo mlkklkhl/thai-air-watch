@@ -20,9 +20,9 @@ const getHueRotation = (colorClass: string): number => {
 };
 
 const getAdaptationAdvice = (pm25: number) => {
-  if (pm25 <= 12) {
+  if (pm25 <= 9.0) {
     return {
-      level: "Good Air Quality",
+      level: "Good",
       icon: CheckCircle2,
       recommendations: [
         { icon: Wind, title: "Outdoor Activities", desc: "Perfect time for outdoor exercise and activities" },
@@ -32,7 +32,7 @@ const getAdaptationAdvice = (pm25: number) => {
     };
   } else if (pm25 <= 35.4) {
     return {
-      level: "Moderate Air Quality",
+      level: "Moderate",
       icon: Shield,
       recommendations: [
         { icon: Wind, title: "Light Activities", desc: "Outdoor activities are generally safe" },
@@ -50,9 +50,9 @@ const getAdaptationAdvice = (pm25: number) => {
         { icon: Wind, title: "Air Purifiers", desc: "Use HEPA air purifiers indoors" },
       ]
     };
-  } else if (pm25 <= 150.4) {
+  } else if (pm25 <= 125.4) {
     return {
-      level: "Unhealthy Air Quality",
+      level: "Unhealthy",
       icon: AlertTriangle,
       recommendations: [
         { icon: Shield, title: "Protective Gear", desc: "Everyone should wear N95 or better masks outdoors" },
@@ -60,7 +60,7 @@ const getAdaptationAdvice = (pm25: number) => {
         { icon: Heart, title: "Health Monitoring", desc: "Monitor symptoms, especially for at-risk groups" },
       ]
     };
-  } else if (pm25 <= 250.4) {
+  } else if (pm25 <= 225.4) {
     return {
       level: "Very Unhealthy",
       icon: AlertTriangle,
@@ -94,7 +94,6 @@ export const AdaptationGuide = ({ currentPM25 }: AdaptationGuideProps) => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url(${samilaMermaid})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.3,

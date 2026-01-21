@@ -16,13 +16,26 @@ interface CurrentConditionsProps {
 
 const getHueRotation = (colorClass: string): number => {
   // Map AQI colors to hue rotations to tint the green mermaid image
-  if (colorClass.includes('good')) return 0; // Keep green
-  if (colorClass.includes('moderate')) return 60; // Yellow
+  if (colorClass.includes('good')) return 60; // Keep green
+  if (colorClass.includes('moderate')) return 10; // Yellow
   if (colorClass.includes('unhealthySensitive')) return 30; // Orange
   if (colorClass.includes('unhealthy') && !colorClass.includes('very')) return 0; // Red (rotate to red from green)
-  if (colorClass.includes('veryUnhealthy')) return 300; // Purple
-  if (colorClass.includes('hazardous')) return 330; // Maroon
+  if (colorClass.includes('veryUnhealthy')) return 280; // Purple
+  if (colorClass.includes('hazardous')) return 320; // Maroon
   return 0;
+};
+
+const getFilterStyle = (colorClass: string) => {
+  const rotation = getHueRotation(colorClass);
+  // Default brightness
+  let brightness = 1; 
+
+  // If Hazardous, darken the image to turn Red into Maroon
+  if (colorClass.includes('hazardous')) {
+    brightness = 0.6; 
+  }
+  // Return the clean CSS string
+  return `sepia(1) hue-rotate(${rotation}deg) saturate(1.0) brightness(${brightness})`;
 };
 
 export const CurrentConditions = ({
@@ -48,7 +61,7 @@ export const CurrentConditions = ({
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.3,
-          filter: `hue-rotate(${getHueRotation(color)}deg) saturate(1.5)`
+          filter: getFilterStyle(color)
         }}
       />
       <div className="relative z-10">

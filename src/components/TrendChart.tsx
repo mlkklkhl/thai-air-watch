@@ -29,7 +29,6 @@ export const TrendChart = ({ data }: TrendChartProps) => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url(${samilaMermaid})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.3,
@@ -60,7 +59,7 @@ export const TrendChart = ({ data }: TrendChartProps) => {
             />
             <ReferenceLine y={12} stroke="hsl(142, 76%, 36%)" strokeDasharray="3 3" label="Good" />
             <ReferenceLine y={35.4} stroke="hsl(47, 91%, 54%)" strokeDasharray="3 3" label="Moderate" />
-            <ReferenceLine y={55.4} stroke="hsl(25, 95%, 53%)" strokeDasharray="3 3" label="Unhealthy" />
+            <ReferenceLine y={55.4} stroke="hsl(0, 95%, 53%)" strokeDasharray="3 3" label="Unhealthy" />
             <Line 
               type="monotone" 
               dataKey="pm25" 
